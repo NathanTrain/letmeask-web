@@ -12,6 +12,7 @@ import { database } from "../services/firebase";
 
 import "../styles/room.scss";
 import { useRoom } from "../hooks/useRoom";
+import toast, { Toaster } from "react-hot-toast";
 
 type RoomParams = {
   id: string;
@@ -33,20 +34,21 @@ export function Room() {
 
     if (!user) {
       //! adicionar TOAST de REACT-NEW-TOAST
-      throw new Error("You must be logged in");
+      toast.error("É necessário fazer login!");
     }
 
     const question = {
       content: newQuestion,
       author: {
-        name: user.name,
-        avatar: user.avatar,
+        name: user?.name,
+        avatar: user?.avatar,
       },
       isHighlighted: false,
       isAnswer: false,
     };
-
+    
     await database.ref(`rooms/${roomId}/questions`).push(question);
+    toast.success("Pergunta enviada!");
 
     setNewQuestion('');
   }
@@ -120,6 +122,7 @@ export function Room() {
         </div>
         
       </main>
+      <Toaster />
     </div>
   );
 }

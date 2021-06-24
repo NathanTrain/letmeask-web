@@ -12,6 +12,7 @@ import { Question } from "../components/Question/index";
 import "../styles/room.scss";
 import { useRoom } from "../hooks/useRoom";
 import { database } from "../services/firebase";
+import toast, { Toaster } from "react-hot-toast";
 
 type RoomParams = {
   id: string;
@@ -37,6 +38,11 @@ export function AdminRoom() {
     // ! usar REACT-MODAL para fazer uma modal diferente
     if (window.confirm("Tem certeza que deseja excluir esta pergunta?")) {
       const questionRef = await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
+      toast("Pergunta excluída", {
+        duration: 2000,
+        position: "top-center",
+        icon: <span className="material-icons" style={{color: '#f03232'}}>delete_outline</span>,
+      })
     }
 
   }
@@ -73,12 +79,13 @@ export function AdminRoom() {
                   >
                     <img src={deleteImg} alt="Remover pergunta" />
                   </button>
-                </Question> 
+                </Question>
               )
           })}
         </div>
         
       </main>
+      <Toaster />
     </div>
   );
 }
