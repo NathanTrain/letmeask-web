@@ -48,6 +48,10 @@ export function Home() {
       return;
     }
 
+    if (user?.id === roomRef.val().authorId) {
+      history.push(`/admin/rooms/${roomCode}`);
+      return;
+    }
     history.push(`/rooms/${roomCode}`);
   }
 

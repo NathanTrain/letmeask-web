@@ -6,13 +6,14 @@ import { RoomCode } from "../components/RoomCode";
 import { Question } from "../components/Question/index";
 
 import { useAuth } from "../hooks/useAuth";
+import { useRoom } from "../hooks/useRoom";
+import { useTheme } from "../hooks/useTheme";
+
 import { database } from "../services/firebase";
 
 import "../styles/room.scss";
-import { useRoom } from "../hooks/useRoom";
 
 import { SwitchTheme } from "../components/SwitchTheme";
-import { useTheme } from "../hooks/useTheme";
 import { LogoImg } from "../components/LogoImg";
 
 import toast, { Toaster } from "react-hot-toast";
