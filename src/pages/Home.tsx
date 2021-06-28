@@ -8,13 +8,20 @@ import googleIconImg from "../assets/images/google-icon.svg";
 import { Button } from "../components/Button";
 import { useAuth } from "../hooks/useAuth";
 
+import { useTheme } from "../hooks/useTheme";
+
 import "../styles/auth.scss";
 import { database } from "../services/firebase";
+import { SwitchTheme } from "../components/SwitchTheme";
 
 export function Home() {
   const history = useHistory();
   const { user, signInWithGoogle } = useAuth();
+
+  const { theme, toggleTheme } = useTheme();
+
   const [roomCode, setRoomCode] = useState("");
+
   async function handleCreateRoom() {
     if (!user) {
       await signInWithGoogle();
@@ -45,7 +52,8 @@ export function Home() {
   }
 
   return (
-    <div id="page-auth">
+    <div id="page-auth" className={theme}>
+      <SwitchTheme Up />
       <aside>
         <img
           src={illustrationImg}

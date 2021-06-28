@@ -14,13 +14,15 @@ import { Question } from "../components/Question/index";
 import "../styles/room.scss";
 import { useRoom } from "../hooks/useRoom";
 import { database } from "../services/firebase";
+import { useTheme } from "../hooks/useTheme";
+import { SwitchTheme } from "../components/SwitchTheme";
 
 type RoomParams = {
   id: string;
 };
 
 export function AdminRoom() {
-  // const { user } = useAuth();
+  const {theme} = useTheme();
   const history = useHistory();
   const params = useParams<RoomParams>();
   
@@ -56,7 +58,7 @@ export function AdminRoom() {
   }
 
   return (
-    <div id="page-room">
+    <div id="page-room" className={theme}>
       <header>
         <div className="content">
           <img src={logoImg} alt="Let me ask" />
@@ -68,6 +70,7 @@ export function AdminRoom() {
       </header>
 
       <main>
+        <SwitchTheme Down />
         <div className="room-title">
           <h1>Sala {title}</h1>
           { questions.length > 0 && <span>{questions.length} pergunta(s)</span> }

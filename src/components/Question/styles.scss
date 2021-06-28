@@ -1,5 +1,38 @@
+$background: #ffffff;
+$primaryColor: #336695;
+$secondColor: #ffeb38;
+
+$background-dark: #161616;
+$primaryColor-dark: #2a4d6d;
+$white: #F8F8F8;
+
 .question {
-  background: #fefefe;
+  &.dark {
+    background: #101010;
+    box-shadow: 0 2px 12px rgba(255, 255, 255, 0.05);
+
+    p {
+      color: $white;
+    }
+
+    &.highlighted {
+      background: #a0aebb;
+      border: 1px solid $primaryColor-dark;
+      footer .user-info span {
+        color: #e5e5e5;
+      }
+    }
+
+    &.answered {
+      background: #828282;
+      footer .user-info span {
+        color: #616161;
+      }
+    }
+  }
+
+
+  background: $white;
   border-radius: 8px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   padding: 24px;
@@ -9,8 +42,9 @@
   }
   
   &.highlighted {
-    background: #f4f0ff;
-    border: 1px solid #835afd;
+    background: rgba($primaryColor, 0.15);
+    border: 1px solid $primaryColor;
+
     
     footer .user-info span {
       color: #29292e;
@@ -18,9 +52,7 @@
   }
   
   &.answered {
-    background: #dbdccc;
-
-    
+    background: #c5c5c5;
   }
   
   p {
@@ -68,10 +100,10 @@
         gap: 8px;
 
         &.liked {
-          color: #835afd;
+          color: $primaryColor;
 
           svg path {
-            stroke: #835afd;
+            stroke: $primaryColor;
           }
         }
       }

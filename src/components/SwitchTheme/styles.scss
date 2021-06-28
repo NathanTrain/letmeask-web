@@ -1,0 +1,28 @@
+.switch {
+  position: fixed;
+  right: 0;
+  margin: 40px 40px;
+  border: 0;
+  cursor: pointer;
+
+  &.Up {
+    top: 0;
+  }
+  &.Down {
+    bottom: 0;
+
+  }
+  width: 60px;
+  border-radius: 999px;
+  span {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    background: #EFEFEF;
+    padding: 5px;
+    border-radius: 999px;
+  }
+  img{
+    margin: 5px
+  }
+}

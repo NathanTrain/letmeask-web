@@ -5,12 +5,15 @@ import illustrationImg from "../assets/images/illustration.svg";
 import logoImg from "../assets/images/logo.svg";
 
 import { Button } from "../components/Button";
+import { SwitchTheme } from "../components/SwitchTheme";
 import { useAuth } from "../hooks/useAuth";
+import { useTheme } from "../hooks/useTheme";
 import { database } from "../services/firebase";
 
 import "../styles/auth.scss";
 
 export function NewRoom() {
+  const { theme } = useTheme();
   const { user } = useAuth();
   const history = useHistory();
   const [newRoom, setNewRoom] = useState('');
@@ -33,7 +36,8 @@ export function NewRoom() {
   }
 
   return (
-    <div id="page-auth">
+    <div id="page-auth" className={theme}>
+      <SwitchTheme Up />
       <aside>
         <img
           src={illustrationImg}
