@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import copyImg from "../assets/images/copy.svg";
 import { useTheme } from "../hooks/useTheme";
 
@@ -9,8 +10,14 @@ type RoomCodeProps = {
 
 export function RoomCode(props: RoomCodeProps) {
   function copyRoomCodeToClipboard() { 
-    //! adicionar toast para quando estiver copiado
     navigator.clipboard.writeText(props.code);
+    toast("Copiado para área de transferência", {
+      duration: 2000,
+      position: 'top-center',
+      icon: <span className="material-icons">content_copy</span>,
+      id: "copied"
+    })
+
   }
 
   const {theme} = useTheme();
