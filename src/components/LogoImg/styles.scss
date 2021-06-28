@@ -1,0 +1,19 @@
+.box {
+  background: #f8f8f8;
+  border: 0;
+  display: flex;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 15px 10px 20px;
+  border-radius: 5px 50px;
+  cursor: pointer;
+
+  &.inHeader {
+    padding: 10px 15px 5px 10px;
+    border-radius: 3px 40px;
+    > img {
+      max-height: 45px;
+    }
+  }
+}

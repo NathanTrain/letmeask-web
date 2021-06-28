@@ -1,8 +1,6 @@
 import { FormEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import logoImg from "../assets/images/logo.svg";
-
 import { Button } from "../components/Button";
 import { RoomCode } from "../components/RoomCode";
 import { Question } from "../components/Question/index";
@@ -14,6 +12,7 @@ import "../styles/room.scss";
 import { useRoom } from "../hooks/useRoom";
 import { SwitchTheme } from "../components/SwitchTheme";
 import { useTheme } from "../hooks/useTheme";
+import { LogoImg } from "../components/LogoImg";
 
 type RoomParams = {
   id: string;
@@ -73,7 +72,7 @@ export function Room() {
     <div id="page-room" className={theme}>
       <header>
         <div className="content">
-          <img src={logoImg} alt="Let me ask" />
+          <LogoImg inHeader />
           <RoomCode code={roomId} />
         </div>
       </header>

@@ -1,4 +1,4 @@
-$background: #ffffff;
+$background: #f8f8f8;
 $primaryColor: #336695;
 $secondColor: #ffeb38;
 
@@ -18,17 +18,13 @@ $primaryColor-dark: #2a4d6d;
       background: $background-dark;
     }
     .main-content {
-      > img {
-        background: #FFFFFF;
-      }
-
       form input {
         background: $background-dark;
         border: 1px solid #787880;
+        color: white;
 
         &:focus {
           border: 1px solid $primaryColor-dark;
-          color: white;
           &::placeholder {
             color: $primaryColor-dark;
           }
@@ -121,7 +117,7 @@ $primaryColor-dark: #2a4d6d;
         height: 50px;
         border-radius: 8px;
         padding: 0 16px;
-        background: #fff;
+        background: $background;
         border: 1px solid #a8a8b3;
 
         &:focus {

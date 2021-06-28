@@ -2,9 +2,9 @@ import { FormEvent, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import illustrationImg from "../assets/images/illustration.svg";
-import logoImg from "../assets/images/logo.svg";
 
 import { Button } from "../components/Button";
+import { LogoImg } from "../components/LogoImg";
 import { SwitchTheme } from "../components/SwitchTheme";
 import { useAuth } from "../hooks/useAuth";
 import { useTheme } from "../hooks/useTheme";
@@ -49,7 +49,7 @@ export function NewRoom() {
 
       <main>
         <div className="main-content">
-          <img src={logoImg} alt="Let me ask" />
+          <LogoImg />
           <h2>Criar uma nova sala</h2>
           <form onSubmit={handleCreateRoom}>
             <input 

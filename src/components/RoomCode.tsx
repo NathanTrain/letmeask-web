@@ -1,5 +1,3 @@
-import cx from "classnames";
-
 import copyImg from "../assets/images/copy.svg";
 import { useTheme } from "../hooks/useTheme";
 

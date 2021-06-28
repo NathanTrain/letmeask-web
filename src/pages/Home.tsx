@@ -2,23 +2,23 @@ import { FormEvent, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import illustrationImg from "../assets/images/illustration.svg";
-import logoImg from "../assets/images/logo.svg";
 import googleIconImg from "../assets/images/google-icon.svg";
 
 import { Button } from "../components/Button";
-import { useAuth } from "../hooks/useAuth";
+import { SwitchTheme } from "../components/SwitchTheme";
+import { LogoImg } from "../components/LogoImg";
 
+import { useAuth } from "../hooks/useAuth";
 import { useTheme } from "../hooks/useTheme";
 
 import "../styles/auth.scss";
 import { database } from "../services/firebase";
-import { SwitchTheme } from "../components/SwitchTheme";
 
 export function Home() {
   const history = useHistory();
   const { user, signInWithGoogle } = useAuth();
 
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
 
   const [roomCode, setRoomCode] = useState("");
 
@@ -65,7 +65,7 @@ export function Home() {
 
       <main>
         <div className="main-content">
-          <img src={logoImg} alt="Let me ask" />
+          <LogoImg />
           <button onClick={handleCreateRoom} className="create-room">
             <img src={googleIconImg} alt="Logo do Google" />
             Crie sua sala com o Google

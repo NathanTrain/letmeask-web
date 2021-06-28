@@ -1,4 +1,4 @@
-$background: #ffffff;
+$background: #f8f8f8;
 $primaryColor: #336695;
 $secondColor: #ffeb38;
 
@@ -16,7 +16,7 @@ $white: #F8F8F8;
     }
 
     &.highlighted {
-      background: #a0aebb;
+      background: rgba($primaryColor-dark, 0.3);
       border: 1px solid $primaryColor-dark;
       footer .user-info span {
         color: #e5e5e5;
@@ -24,9 +24,24 @@ $white: #F8F8F8;
     }
 
     &.answered {
-      background: #828282;
+      background: #616161;
       footer .user-info span {
-        color: #616161;
+        color: #8f8e8e;
+      }
+    }
+
+    footer > div {
+      .likes {
+        color: #737363;
+        filter: brightness(0.7);
+        cursor: default;
+      }
+      button {
+        filter: contrast(1.4);
+        transition: filter 0.1s;
+        &:hover {
+          filter: brightness(0.7);
+        }
       }
     }
   }
@@ -81,7 +96,10 @@ $white: #F8F8F8;
         font-size: 14px;
       }
     }
-
+    .likes {
+      align-self: center;
+      margin-bottom: 4px;
+    }
     > div {
       display: flex;
       gap: 16px;

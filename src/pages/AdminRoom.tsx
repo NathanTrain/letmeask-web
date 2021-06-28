@@ -1,6 +1,5 @@
 import { useHistory, useParams } from "react-router-dom";
 
-import logoImg from "../assets/images/logo.svg";
 import deleteImg from '../assets/images/delete.svg';
 import checkImg from '../assets/images/check.svg';
 import answerImg from '../assets/images/answer.svg';
@@ -16,6 +15,7 @@ import { useRoom } from "../hooks/useRoom";
 import { database } from "../services/firebase";
 import { useTheme } from "../hooks/useTheme";
 import { SwitchTheme } from "../components/SwitchTheme";
+import { LogoImg } from "../components/LogoImg";
 
 type RoomParams = {
   id: string;
@@ -61,7 +61,7 @@ export function AdminRoom() {
     <div id="page-room" className={theme}>
       <header>
         <div className="content">
-          <img src={logoImg} alt="Let me ask" />
+          <LogoImg inHeader />
           <div>
             <RoomCode code={roomId} />
             <Button isOutlined onClick={handleEndRoom}>Encerrar sala</Button>
@@ -88,6 +88,7 @@ export function AdminRoom() {
                 >
                   {!question.isAnswered && (
                     <>
+                      <span className="likes" >{question.likeCount}</span>
                       <button
                       type="button"
                       onClick={() => handleCheckQuestionAsAnswered(question.id)}

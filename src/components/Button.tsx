@@ -11,7 +11,6 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 export function Button({isOutlined = false, ...props}: ButtonProps) {
   const {theme} = useTheme();
-  console.log(theme);
   return (
     <button 
       className={cx(
