@@ -1,4 +1,4 @@
-import { useHistory, useParams } from "react-router-dom";
+import { RouteComponentProps, useHistory, useParams } from "react-router-dom";
 
 import deleteImg from "../assets/images/delete.svg";
 import checkImg from "../assets/images/check.svg";
@@ -7,8 +7,6 @@ import answerImg from "../assets/images/answer.svg";
 import { Button } from "../components/Button";
 import { RoomCode } from "../components/RoomCode";
 import { Question } from "../components/Question/index";
-
-// import { useAuth } from "../hooks/useAuth";
 
 import "../styles/room.scss";
 import { useRoom } from "../hooks/useRoom";
@@ -19,12 +17,15 @@ import { SwitchTheme } from "../components/SwitchTheme";
 import { LogoImg } from "../components/LogoImg";
 
 import toast, { Toaster } from "react-hot-toast";
+import { useEffect, useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 type RoomParams = {
   id: string;
 };
 
-export function AdminRoom() {
+export function AdminRoom(props?: any) {
+  const { user } = useAuth();
   const { theme } = useTheme();
   const history = useHistory();
   const params = useParams<RoomParams>();
@@ -32,11 +33,21 @@ export function AdminRoom() {
   const roomId = params.id;
   const { questions, title } = useRoom(roomId);
 
+  const authorId: string | undefined = props.location.state?.authorId;
+
+  useEffect(() => {
+    if ((authorId === undefined && user?.id === undefined) || (authorId !== user?.id)) {
+      alert("Você não tem permissão para acessar essa sala!");
+      history.push("/");
+      return;
+    }
+  }, [authorId, user?.id])
+
   async function handleEndRoom() {
     await database.ref(`rooms/${roomId}`).update({
       endedAt: new Date(),
     });
-
+    
     history.push("/");
   }
 
@@ -53,7 +64,6 @@ export function AdminRoom() {
   }
 
   async function handleDeleteQuestion(questionId: string) {
-    // ! usar REACT-MODAL para fazer uma modal diferente
     if (window.confirm("Tem certeza que deseja excluir esta pergunta?")) {
       await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
       toast("Pergunta excluída", {

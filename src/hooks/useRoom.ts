@@ -31,7 +31,8 @@ type FirebaseQuestions = Record<string, {
 export function useRoom(roomId: string) {
   const { user } = useAuth();
   const [title, setTitle] = useState("");
-  const [questions, setQuestions] = useState<QuestionType[]>([]);  
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [questions, setQuestions] = useState<QuestionType[]>([]);
   
   useEffect(() => {
     const roomRef = database.ref(`rooms/${roomId}`);
@@ -52,6 +53,7 @@ export function useRoom(roomId: string) {
         }
       })
       setTitle(databaseRoom.title);
+      setIsAdmin(databaseRoom.authorId === user?.id ? true : false);
       setQuestions(parsedQuestions);
     });
 
@@ -60,5 +62,5 @@ export function useRoom(roomId: string) {
     }
   }, [roomId, user?.id]);
 
-  return { questions, title };
+  return { questions, title, isAdmin };
 }
